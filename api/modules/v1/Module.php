@@ -1,28 +1,32 @@
 <?php
-
 namespace api\modules\v1;
-
-
 use yii\filters\Cors;
 
+/**
+ * module module definition class
+ */
 class Module extends \yii\base\Module
 {
+    /**
+     * @inheritdoc
+     */
     public $controllerNamespace = 'api\modules\v1\controllers';
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
+        // custom initialization code goes here
     }
-
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-
         unset($behaviors['authenticator']);
-
         $behaviors['corsFilter'] = [
             'class' => Cors::className(),
             'cors' => [
@@ -39,7 +43,6 @@ class Module extends \yii\base\Module
                 ]
             ]
         ];
-
         return $behaviors;
     }
 }
