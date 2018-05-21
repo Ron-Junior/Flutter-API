@@ -4,8 +4,8 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=db_name',
-            'username' => 'insulina_api',
-            'password' => 'insulinApi#sys',
+            'username' => 'base',
+            'password' => 'base',
             'charset' => 'utf8',
         ],
         'mailer' => [

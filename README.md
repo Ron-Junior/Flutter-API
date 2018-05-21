@@ -1,7 +1,7 @@
 Project Name - API
-================
+==================
 
-Neste repositório, se encontrará os códigos relacionados a API do aplicativo InsulinAPP.
+Neste repositório, se encontrará os códigos relacionados a Base da API.
 
 Para iniciar o projeto em modo de desenvolvimento ou produção, execute:
 
