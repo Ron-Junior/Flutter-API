@@ -5,7 +5,7 @@
     "project",
     "api"
   ],
-  "homepage": "http://www.interativadigital.com/",
+  "homepage": "http://www.interativadigital.com.br/",
   "type": "project",
   "license": "BSD-3-Clause",
   "minimum-stability": "stable",
@@ -19,6 +19,7 @@
     "yiisoft/yii2-debug": "~2.0.0",
     "yiisoft/yii2-gii": "~2.0.0",
     "yiisoft/yii2-faker": "~2.0.0",
+    "insolita/yii2-migration-generator": "^2.3",
     "codeception/base": "^2.2.3",
     "codeception/verify": "~0.3.1"
   },
