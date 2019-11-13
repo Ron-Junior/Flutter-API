@@ -30,7 +30,7 @@ class Module extends \yii\base\Module
         $behaviors['corsFilter'] = [
             'class' => Cors::className(),
             'cors' => [
-                'Origin' => ['*'],
+                'Origin' => [],
                 'Access-Control-Request-Headers' => ['Authorization', 'Content-Type'],
                 'Access-Control-Request-Method' => ['GET', 'POST', 'HEAD', 'OPTIONS', 'DELETE', 'PUT'],
                 'Access-Control-Allow-Credentials' => ['true'],

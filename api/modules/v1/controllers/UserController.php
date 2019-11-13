@@ -38,9 +38,10 @@ class UserController extends ActiveController
     public function actionLogin()
     {
         $request = Yii::$app->request;
+        // $email = $request->get('email');
         $email = $request->post('email');
-        $password = $request->post('password');
-
+        $password = $request->post('encrypted_password');
+        Yii::debug(print_r($email,true));
         if (empty($email) || empty($password)) {
             throw new UnauthorizedHttpException();
         }
@@ -48,16 +49,14 @@ class UserController extends ActiveController
         /** @var User $user */
         $user = User::findOne(['email' => $email]);
 
-        if (!empty($user)) {
-            // On DEV environment we can login with any account using any password.
-            $hasInvalidPassword = (!YII_ENV_DEV && !Yii::$app->getSecurity()->validatePassword($password, $user->encrypted_password));
+        /** @var User $user */
 
-            if ($hasInvalidPassword) {
-                throw new UnauthorizedHttpException();
-            }
+        if (empty($user) || !Yii::$app->getSecurity()->validatePassword($password, $user->encrypted_password)) {
+            throw new UnauthorizedHttpException("Usuário e/ou senha inválidos");
         }
 
         $user->access_token = Yii::$app->getSecurity()->generateRandomString();
+        $user->encrypted_password = $password;
 
         if ($user->save()) {
             Yii::$app->user->login($user);
@@ -65,4 +64,5 @@ class UserController extends ActiveController
 
         return $user;
     }
+
 }

@@ -3,7 +3,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db_name',
+            'dsn' => 'mysql:host=interativa-box-mysql;dbname=flutter_db',
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',

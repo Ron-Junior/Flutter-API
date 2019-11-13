@@ -67,7 +67,14 @@ return [
                         'OPTIONS <whatever:.*>' => 'options',
                         'POST login' => 'login',
                     ]
-                ]
+                    ],
+                    [
+                        'class' => 'yii\rest\UrlRule',
+                        'controller' => 'v1/device',
+                        'extraPatterns' => [
+                            'OPTIONS <whatever:.*>' => 'options',
+                        ]
+                    ]
             ],
         ],
     ],
