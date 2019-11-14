@@ -56,7 +56,7 @@ class UserController extends ActiveController
         }
 
         $user->access_token = Yii::$app->getSecurity()->generateRandomString();
-        $user->encrypted_password = $password;
+        $user->encrypted_password =  Yii::$app->getSecurity()->generatePasswordHash($password);
 
         if ($user->save()) {
             Yii::$app->user->login($user);
