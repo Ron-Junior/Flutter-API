@@ -66,6 +66,7 @@ return [
                     'extraPatterns' => [
                         'OPTIONS <whatever:.*>' => 'options',
                         'POST login' => 'login',
+                        'POST register' => 'register',
                     ]
                     ],
                     [

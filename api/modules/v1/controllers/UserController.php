@@ -7,6 +7,7 @@ use Yii;
 use yii\rest\ActiveController;
 use yii\filters\auth\HttpBearerAuth;
 use yii\web\UnauthorizedHttpException;
+use yii\web\BadRequestHttpException;
 
 /**
  * User Controller API
@@ -24,7 +25,7 @@ class UserController extends ActiveController
 
         $behaviors['authenticator'] = [
             'class' => HttpBearerAuth::className(),
-            'except' => ['create', 'login', 'options']
+            'except' => ['create', 'login', 'register', 'options']
         ];
 
         return $behaviors;
@@ -63,6 +64,35 @@ class UserController extends ActiveController
         }
 
         return $user;
+    }
+
+    public function actionRegister()
+    {
+        $request = Yii::$app->request;
+
+        if (!$request->post('name') ||
+            !$request->post('email') ||
+            !$request->post('password') ||
+            !$request->post('password')){
+            throw new BadRequestHttpException('Campos obrigatórios precisam ser preenchidos.');
+        }
+
+        if (User::find()->where(['email' => $request->post('email')])->one()) {
+            throw new BadRequestHttpException('O e-mail informado já foi cadastrado.');
+        }
+
+        /** @var User $user */
+        $user = new User();
+        $user->name = $request->post('name');
+        $user->email = $request->post('email');
+        $user->access_token = Yii::$app->getSecurity()->generateRandomString();
+        $user->encrypted_password =  Yii::$app->getSecurity()->generatePasswordHash($password);
+        
+        if (!$user->save()) {
+            return $user->getFirstErrors();
+        }
+
+        return User::find()->where(['email' => $user->email])->one();
     }
 
 }
