@@ -72,8 +72,7 @@ class UserController extends ActiveController
 
         if (!$request->post('name') ||
             !$request->post('email') ||
-            !$request->post('password') ||
-            !$request->post('password')){
+            !$request->post('encrypted_password')){
             throw new BadRequestHttpException('Campos obrigatórios precisam ser preenchidos.');
         }
 
